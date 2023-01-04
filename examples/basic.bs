@@ -1,0 +1,32 @@
+// BScript supports some python builtins.
+//!Python builtins:
+//!
+
+print(1, 2, 3, 4)
+print(max([1, 2, 100]));
+print(min([1, 2, 100]));
+print(sum([1, 2, 100]));
+print(round(9.12));
+print(int('90') + 2);
+print(reverse([1, 2, 3, 4, 5]))
+print(len([1, 2, 3]))
+print(all([true, true]))
+print(any([false, false, false]))
+print(abs(-1))
+
+# Python style comments are supported too!
+//!Printing comments???
+
+// Input() can be used like in python as well
+a = input("Enter a")
+
+// It also implies automatically multiplication
+// when no operand was explicitly typed
+// however number must be before the variable name
+b = 5a
+
+// Finally let's print the results
+
+//!
+//!Calculation result:
+print(b)
