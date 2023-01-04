@@ -21,7 +21,7 @@ const any = (arr)=>arr.some((el)=>!!el);
     `.trim()+"\n\n"
 
 function transpile(code, verbose) {
-    code = code.replace(/(?:\/\*(?:.|\s)*\*\/|\/\/.*|"(?:\\.|[^"])*"|'(?:\\.|[^'])*'|`(?:\\.|[^`])*?`)|(?:[0-9]*\.[0-9]*E\+[0-9]*)|(([0-9]+)([a-zA-Z][a-zA-Z0-9]*))/g, function (match, group1, group2, group3) {
+    code = code.replace(/(?:\/\*(?:.|\s)*\*\/|\/\/.*|"(?:\\.|[^"])*"|'(?:\\.|[^'])*'|`(?:\\.|[^`])*?`)|(?:[0-9]*\.[0-9]*[e|E]\+[0-9]*)|(([0-9]+)([a-zA-Z][a-zA-Z0-9]*))/g, function (match, group1, group2, group3) {
         if (group1 === undefined) {
             return match;
         }
