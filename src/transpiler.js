@@ -21,23 +21,23 @@ const any = (arr)=>arr.some((el)=>!!el);
     `.trim()+"\n\n"
 
 function transpile(code, verbose) {
-    code = code.replace(/(?:"(?:\\.|[^"])*"|'(?:\\.|[^'])*'|`(?:\\.|[^`])*?`)|(([0-9]+)([a-zA-Z][a-zA-Z0-9]*))/g, function (match, group1, group2, group3) {
+    code = code.replace(/\/\*(?:.|\s)*\*\/|\/\/.*|(?:"(?:\\.|[^"])*"|'(?:\\.|[^'])*'|`(?:\\.|[^`])*?`)|(([0-9]+)([a-zA-Z][a-zA-Z0-9]*))/g, function (match, group1, group2, group3) {
         if (group1 === undefined) {
             return match;
         }
         return `(${group2}*${group3})`;
     });
-    code = code.replace(/(?:"(?:\\.|[^"])*"|'(?:\\.|[^'])*'|`(?:\\.|[^`])*?`)|(#)/g, function (match, group1, group2, group3) {
+    code = code.replace(/\/\*(?:.|\s)*\*\/|\/\/.*|(?:"(?:\\.|[^"])*"|'(?:\\.|[^'])*'|`(?:\\.|[^`])*?`)|(#)/g, function (match, group1, group2, group3) {
         if (group1 === undefined) {
             return match;
         }
         return "//";
     });
-    code = code.replace(/(?:"(?:\\.|[^"])*"|'(?:\\.|[^'])*'|`(?:\\.|[^`])*?`)|\/\/!(.*)/g, function (match, group1, group2) {
+    code = code.replace(/\/\*(?:.|\s)*\*\/|\/\/[^!].*|(?:"(?:\\.|[^"])*"|'(?:\\.|[^'])*'|`(?:\\.|[^`])*?`)|\/\/!(.*)/g, function (match, group1, group2) {
         if (group1 === undefined) {
             return match;
         }
-        return `print("${group1.replaceAll(`"`,`\\"`)}")`;
+        return `;print("${group1.replaceAll(`"`,`\\"`)}");`;
     });
     if (!verbose) return code;
     if(verbose >= 1){
